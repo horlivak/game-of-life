@@ -1,0 +1,84 @@
+parameters:
+    level: max
+
+    tmpDir: /tmp/tool_cache/phpstan
+
+    paths:
+        - src
+        - tests
+        - migrations
+
+    checkExplicitMixed: true
+    checkDynamicProperties: true
+    checkTooWideReturnTypesInProtectedAndPublicMethods: true
+    checkUninitializedProperties: true
+    checkMissingCallableSignature: true
+
+    exceptions:
+        check:
+            missingCheckedExceptionInThrows: true
+            tooWideThrowType: true
+        implicitThrows: false
+
+    type_coverage: # We want to have type safe code - https://tomasvotruba.com/blog/how-to-measure-your-type-coverage/
+        return_type: 100
+        param_type: 100
+        property_type: 100
+
+    cognitive_complexity: # https://tomasvotruba.com/blog/keep-cognitive-complexity-low-with-phpstan/
+        class: 20
+        function: 9
+
+    ignoreErrors:
+        -
+            message: '#Interface must be located in "Contract" or "Contracts" namespace#'
+            reportUnmatched: false
+        -
+            identifier: missingType.checkedException
+            paths:
+                - tests/
+        -
+            identifier: complexity.classLike
+            paths:
+                - src/Infrastructure/Rector/
+                - src/Engine/Grid.php
+            reportUnmatched: false
+        -
+            message: "#^Static method PHPUnit\\\\Framework\\\\Assert\\:\\:(assertNotEquals|assertSame|fail|assertStringStartsWith|assertStringEndsWith|assertTrue|assertCount|assertEquals|assertInstanceOf|assertContains|assertNotNull|assertContains|assertMatchesRegularExpression|callback|assertLessThan|assertNotContains|assertContainsEquals|assertArrayNotHasKey|assertGreaterThan|assertGreaterThanOrEqual|assertIsString|assertStringContainsString|assertArrayHasKey|assertNotSame|assertIsArray|assertNotEmpty|assertObjectHasProperty|assertObjectNotHasProperty|assertIsObject|assertLessThanOrEqual|assertIsInt|assertEmpty|assertFalse|assertNotFalse|assertNull|assertIsIterable)\\(\\) invoked with named argument \\$(actual|expected|minimum|maximum|message|prefix|string|condition|haystack|needle|callback|pattern|key|array|suffix|object|propertyName|expectedCount), but it's not allowed because of @no\\-named\\-arguments\\.$#"
+
+    ergebnis:
+        noExtends:
+            classesAllowedToBeExtended:
+                - Exception
+                - RuntimeException
+                - Symfony\Bundle\FrameworkBundle\Test\WebTestCase
+                - Symfony\Bundle\FrameworkBundle\Test\KernelTestCase
+                - Symfony\Bundle\FrameworkBundle\Controller\AbstractController
+                - Symfony\Component\Console\Command\Command
+                - PHPUnit\Framework\TestCase
+                - Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository
+                - Doctrine\Migrations\AbstractMigration
+                - Symfony\Component\HttpKernel\Kernel
+                - Rector\Rector\AbstractRector
+
+        noNamedArgument:
+            enabled: false
+        noNullableReturnTypeDeclaration:
+            enabled: false
+        noParameterWithNullableTypeDeclaration:
+            enabled: false
+        noParameterWithNullDefaultValue:
+            enabled: false
+        noConstructorParameterWithDefaultValue:
+            enabled: false
+        noIsset:
+            enabled: false
+
+    excludePaths:
+        - tests/bootstrap.php
+
+includes:
+    - vendor/phpstan/phpstan/conf/bleedingEdge.neon
+    - vendor/symplify/phpstan-rules/config/static-rules.neon
+    - vendor/symplify/phpstan-rules/config/code-complexity-rules.neon
+    - vendor/symplify/phpstan-rules/config/naming-rules.neon
