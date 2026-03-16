@@ -1,0 +1,32 @@
+rules:
+    - Symplify\PHPStanRules\Rules\Symfony\NoAbstractControllerConstructorRule
+    - Symplify\PHPStanRules\Rules\Symfony\NoRequiredOutsideClassRule
+    - Symplify\PHPStanRules\Rules\Symfony\SingleArgEventDispatchRule
+    - Symplify\PHPStanRules\Rules\Symfony\NoListenerWithoutContractRule
+    - Symplify\PHPStanRules\Rules\Symfony\NoStringInGetSubscribedEventsRule
+    - Symplify\PHPStanRules\Rules\Symfony\RequireInvokableControllerRule
+    - Symplify\PHPStanRules\Rules\Symfony\FormTypeClassNameRule
+
+    # controllers
+    - Symplify\PHPStanRules\Rules\Symfony\NoControllerMethodInjectionRule
+
+    # routing
+    - Symplify\PHPStanRules\Rules\Symfony\NoRoutingPrefixRule
+    - Symplify\PHPStanRules\Rules\Symfony\NoClassLevelRouteRule
+    - Symplify\PHPStanRules\Rules\Symfony\NoRouteTrailingSlashPathRule
+    - Symplify\PHPStanRules\Rules\Symfony\RequireRouteNameToGenerateControllerRouteRule
+
+    # dependency injection
+    - Symplify\PHPStanRules\Rules\Symfony\NoGetInControllerRule
+    - Symplify\PHPStanRules\Rules\Symfony\NoGetInCommandRule
+    - Symplify\PHPStanRules\Rules\Symfony\NoGetDoctrineInControllerRule
+    - Symplify\PHPStanRules\Rules\Symfony\NoFindTaggedServiceIdsCallRule
+
+    # magic required inject
+    - Symplify\PHPStanRules\Rules\Symfony\SingleRequiredMethodRule
+    - Symplify\PHPStanRules\Rules\Symfony\RequiredOnlyInAbstractRule
+    - Symplify\PHPStanRules\Rules\Symfony\NoConstructorAndRequiredTogetherRule
+
+    # attributes
+    - Symplify\PHPStanRules\Rules\Symfony\RequireIsGrantedEnumRule
+    - Symplify\PHPStanRules\Rules\Symfony\NoBareAndSecurityIsGrantedContentsRule

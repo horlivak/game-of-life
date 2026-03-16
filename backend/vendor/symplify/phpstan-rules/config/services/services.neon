@@ -1,0 +1,36 @@
+parameters:
+    # related to MaximumIgnoredErrorCountRule
+    maximumIgnoredErrorCount: 0
+
+parametersSchema:
+    # related to MaximumIgnoredErrorCountRule
+    maximumIgnoredErrorCount: int()
+
+services:
+    - Symplify\PHPStanRules\NodeTraverser\SimpleCallableNodeTraverser
+    - Symplify\PHPStanRules\PhpDocParser\PhpDocNodeTraverser
+    - Symplify\PHPStanRules\Reflection\ReflectionParser
+    - Symplify\PHPStanRules\Matcher\ArrayStringAndFnMatcher
+    - Symplify\PHPStanRules\NodeFinder\TypeAwareNodeFinder
+    - Symplify\PHPStanRules\PhpDoc\SeePhpDocTagNodesFinder
+    - Symplify\PHPStanRules\Formatter\RequiredWithMessageFormatter
+    - Symplify\PHPStanRules\Naming\ClassToSuffixResolver
+    - Symplify\PHPStanRules\NodeAnalyzer\AttributeFinder
+    - Symplify\PHPStanRules\NodeAnalyzer\EnumAnalyzer
+    - Symplify\PHPStanRules\ParentClassMethodNodeResolver
+    - Symplify\PHPStanRules\PhpDoc\BarePhpDocParser
+    - Symplify\PHPStanRules\PhpDoc\PhpDocResolver
+    - Symplify\PHPStanRules\TypeAnalyzer\CallableTypeAnalyzer
+
+    # doctrine
+    - Symplify\PHPStanRules\Doctrine\DoctrineEntityDocumentAnalyser
+
+    # symfony
+    - Symplify\PHPStanRules\Symfony\Reflection\ClassConstructorTypesResolver
+
+    # rules enabled by configuration
+    -
+        class: Symplify\PHPStanRules\Rules\MaximumIgnoredErrorCountRule
+        tags: [phpstan.rules.rule]
+        arguments:
+            limit: %maximumIgnoredErrorCount%

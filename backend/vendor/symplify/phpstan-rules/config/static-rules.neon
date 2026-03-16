@@ -1,0 +1,20 @@
+rules:
+    - Symplify\PHPStanRules\Rules\ForbiddenExtendOfNonAbstractClassRule
+    - Symplify\PHPStanRules\Rules\NoGlobalConstRule
+
+    # domain
+    - Symplify\PHPStanRules\Rules\Domain\RequireExceptionNamespaceRule
+    - Symplify\PHPStanRules\Rules\Domain\RequireAttributeNamespaceRule
+    - Symplify\PHPStanRules\Rules\CheckRequiredInterfaceInContractNamespaceRule
+    - Symplify\PHPStanRules\Rules\RequireAttributeNameRule
+
+    - Symplify\PHPStanRules\Rules\Enum\RequireUniqueEnumConstantRule
+    - Symplify\PHPStanRules\Rules\PreventParentMethodVisibilityOverrideRule
+
+    - Symplify\PHPStanRules\Rules\ForbiddenMultipleClassLikeInOneFileRule
+    - Symplify\PHPStanRules\Rules\NoReferenceRule
+    - Symplify\PHPStanRules\Rules\ForbiddenStaticClassConstFetchRule
+    - Symplify\PHPStanRules\Rules\Complexity\ForbiddenArrayMethodCallRule
+
+    # docblock
+    - Symplify\PHPStanRules\Rules\NoMissnamedDocTagRule
