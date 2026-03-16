@@ -1,0 +1,19 @@
+### backend ###
+backend/.env.local
+backend/.env.local.php
+backend/.env.*.local
+backend/config/secrets/*/local/
+backend/public/bundles/
+backend/var/
+backend/vendor/
+backend/.phpunit.cache/
+backend/config/reference.php
+backend/phpunit.xml
+backend/out.json
+
+### docker ###
+db-data/
+
+### IDE ###
+.idea/
+.DS_Store
