@@ -1,0 +1,42 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    _instanceof:
+        App\Engine\Rule\DeathRuleInterface:
+            tags: ['app.death_rule']
+        App\Engine\Rule\BirthRuleInterface:
+            tags: ['app.birth_rule']
+
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/Infrastructure/Rector/'
+            - '../src/Kernel.php'
+
+    App\Infrastructure\GridStore\GridStoreInterface:
+        alias: App\Infrastructure\GridStore\RedisGridStore
+
+    App\Engine\ConflictResolverInterface:
+        alias: App\Engine\ConflictResolver
+
+    Redis:
+        class: Redis
+        calls:
+            - connect:
+                - '%env(REDIS_HOST)%'
+                - '%env(int:REDIS_PORT)%'
+
+when@test:
+    services:
+        Redis:
+            class: Redis
+            calls:
+                - connect:
+                    - '%env(REDIS_HOST)%'
+                    - '%env(int:REDIS_PORT)%'
+                - select:
+                    - 1
